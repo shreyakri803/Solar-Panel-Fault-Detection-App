@@ -72,9 +72,16 @@ filename, top_label, top_confidence, prob_Clean, prob_Physical, prob_Electrical
 This project is implemented in Python with a clean, modular structure designed for clarity, maintainability, and efficient computer‑vision inference.
 
 ## Core Files
+
 File --->  Purpose
+
+
 app.py	 ---> Main application entry point; handles UI, preprocessing, inference, results UI & export
+
+
 converted_model.tflite	 ---> Optimized TensorFlow Lite model for lightweight, fast inference
+
+
 labels.txt	 ---> Label mapping corresponding to model output indices
 
 
