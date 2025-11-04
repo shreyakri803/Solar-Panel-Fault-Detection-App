@@ -79,22 +79,39 @@ labels.txt	 ---> Label mapping corresponding to model output indices
 
 
 ## Key Functional Components
+
 Component	 ---> Responsibility
+
+
 Model  ---> Loader	Initializes TensorFlow Lite interpreter and allocates tensors
+
+
 Preprocessing Pipeline	 ---> Image resizing (224×224), normalization, tensor formatting
+
+
 Inference Engine	 ---> Runs model inference and retrieves softmax probability scores
+
+
 Post‑processing	 ---> Extracts top prediction, interprets class labels, formats confidence
+
+
 UI Logic	 ---> Streamlit interface for image upload, visualization, metrics, batch progress
+
+
 Reporting Engine	 ---> Generates structured CSV outputs for single & batch modes
 
 
 ## Design Principles
 
+
 Lightweight Deployment: TFLite ensures fast inference even on low‑power devices
+
 
 Separation of Concerns: Preprocessing, inference, and UI layers are logically split
 
+
 Scalable Input Modes: Supports both single‑image and multi‑image workflows
+
 
 Practical Field Utility: CSV outputs mirror real inspection reporting formats
 
