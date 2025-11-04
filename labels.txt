@@ -1,0 +1,3 @@
+0 Clean
+1 Physical Damage
+2 Electrical Damage
