@@ -66,16 +66,6 @@ Example CSV Columns:
 ```
 filename, top_label, top_confidence, prob_Clean, prob_Physical, prob_Electrical
 ```
-
----
-
-## 🧪 Future Enhancements
-
-* 🔥 Thermal image support
-* 📍 Geolocation tagging & GIS map overlay
-* 🛰️ Drone camera image-stream integration
-* 📑 Auto PDF report export
-* 🧾 Time-series degradation analytics
 ----
 🧠 Codebase Overview & Core Logic
 
