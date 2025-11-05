@@ -110,7 +110,7 @@ Streamlit UI + CSV Export
 ## 🛠️ Installation & Usage
 
 ```bash
-git clone <repo-url>
+git clone (https://github.com/shreyakri803/Solar-Panel-Fault-Detection-App)
 cd solar-pv-fault-detection
 pip install -r requirements.txt
 streamlit run app.py
