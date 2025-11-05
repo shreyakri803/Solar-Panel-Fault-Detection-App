@@ -1,131 +1,147 @@
-# Solar-Panel-Fault-Detection-App
+# Solar Panel Fault Detection – TensorFlow Lite + Streamlit
 
-This project is a computer vision–based solar PV fault detection tool designed to assist in automated solar asset inspection. It classifies solar panel images into three categories — **Clean**, **Physical Damage**, and **Electrical Fault** — using a TensorFlow Lite model and an interactive Streamlit interface.
+A lightweight, real-time **solar PV fault detection** system designed to support automated solar inspection workflows. This project classifies solar panel images into three operational states and generates structured maintenance reports suitable for field operations.
 
-The system simulates real-world workflows used in drone-based solar inspections and renewable energy analytics. It supports both single-image and batch processing modes, and exports structured CSV reports suitable for field diagnostics and reporting.
-
----
-
-## 🚀 Features
-
-* ✅ Solar PV fault classification using deep learning
-* ✅ Categories: *Clean*, *Physical Damage*, *Electrical Fault*
-* ✅ User-friendly Streamlit web interface
-* ✅ Supports **single & bulk image uploads**
-* ✅ Real-time predictions with confidence scores
-* ✅ CSV report export for field teams
-* 🎯 Designed to mimic real-world drone inspection workflows
+> ✅ Built for edge efficiency · ✅ Streamlit UI · ✅ Single & batch inference · ✅ CSV reporting · ✅ Clean engineering & traceable logic
 
 ---
 
-## 🧠 Tech Stack
+## 🚀 Project Overview
 
-| Component        | Technology                |
-| ---------------- | ------------------------- |
-| Model            | TensorFlow Lite           |
-| UI               | Streamlit                 |
-| Image Processing | PIL, NumPy                |
-| Data Handling    | Pandas                    |
-| Environment      | Python (3.10 recommended) |
+Manual inspection of large-scale solar farms is time-consuming and prone to human error. This project automates visual fault detection to assist maintenance teams and drone-inspection pipelines.
+
+### **Core Objectives**
+
+* Detect panel health conditions from images
+* Enable real-time and batch inspection modes
+* Generate structured maintenance logs for field workflows
+* Support deployment on CPU-only edge devices
 
 ---
 
-## 📁 Project Structure
+## 🎯 Capabilities
 
+| Feature       | Description                                     |
+| ------------- | ----------------------------------------------- |
+| Fault Classes | Clean, Physical Damage, Electrical Damage       |
+| UI            | Streamlit-based web interface                   |
+| Model Format  | TensorFlow Lite (CPU-optimized)                 |
+| Modes         | Single image & bulk processing                  |
+| Output        | CSV report with probabilities & metadata        |
+| Metadata      | Site ID, Array ID, GPS fields for field mapping |
+
+---
+
+## 🧠 Architecture
+
+```text
+User Uploads Image(s)
+        ↓
+Preprocessing (224×224, Normalization)
+        ↓
+TFLite Inference (CPU)
+        ↓
+Top-Class & Probability Extraction
+        ↓
+Streamlit UI + CSV Export
 ```
-├── app.py
 
-├── converted_model.tflite
+---
 
-├── labels.txt
+## 💻 Tech Stack
 
-├── requirements.txt
+* Python
+* TensorFlow Lite
+* Streamlit
+* NumPy, Pillow, Pandas
 
-└── sample_images/
+---
+
+## 📂 Repository Structure
+
+```plaintext
+📦 solar-pv-fault-detection
+ ┣ app.py                  # Streamlit application
+ ┣ converted_model.tflite  # Optimized inference model
+ ┣ labels.txt              # Class labels
+ ┗ requirements.txt        # Dependencies
+ 
 ```
 
 ---
 
-## 📦 Input Requirements
+## ⚙️ How It Works
 
-* Solar panel images in `.jpg` / `.jpeg` / `.png`
-* Works with drone / mobile / thermal-converted images
+**Input Processing**
+
+* Images auto-resized to **224×224**
+* Normalized to **[-1, 1]** tensor
+
+**Inference**
+
+* TFLite interpreter loads model to CPU
+* Outputs probability for each class
+
+**Decision Logic**
+
+* Top label selected via softmax
+* Confidence threshold configurable (default **0.70**)
+
+**Batch Mode**
+
+* Sequential inference with progress UI
+* Displays preview & flag results
 
 ---
 
-## 📊 Output
+## 📊 Output Format (CSV)
 
-The tool generates:
+| Column         | Description              |
+| -------------- | ------------------------ |
+| timestamp      | UTC time                 |
+| filename       | Image name               |
+| top_label      | Predicted class          |
+| top_confidence | Confidence score         |
+| metadata       | Site ID, Array ID, GPS   |
+| prob_*         | Class-wise probabilities |
 
-* Predicted class (Clean / Physical / Electrical Fault)
-* Confidence score
-* CSV report (for bulk runs)
+---
 
-Example CSV Columns:
+## 🛠️ Installation & Usage
 
+```bash
+git clone <repo-url>
+cd solar-pv-fault-detection
+pip install -r requirements.txt
+streamlit run app.py
 ```
-filename, top_label, top_confidence, prob_Clean, prob_Physical, prob_Electrical
-```
-----
-🧠 Codebase Overview & Core Logic
 
-This project is implemented in Python with a clean, modular structure designed for clarity, maintainability, and efficient computer‑vision inference.
+Access at: **[http://localhost:8501](http://localhost:8501)**
 
-## Core Files
+---
 
-File --->  Purpose
+## 📌 Practical Use Cases
 
+* Drone-based solar inspections
+* PV maintenance workflows
+* Renewable asset health scoring
+* Edge-AI deployment prototypes
 
-app.py	 ---> Main application entry point; handles UI, preprocessing, inference, results UI & export
+---
 
+## 📥 Future Enhancements
 
-converted_model.tflite	 ---> Optimized TensorFlow Lite model for lightweight, fast inference
+* Thermal image support
+* YOLO-based hotspot/defect localization
+* ONNX export for embedded boards
+* MongoDB / cloud report sync
 
+---
 
-labels.txt	 ---> Label mapping corresponding to model output indices
+## 👤 Author
 
+**Shreya Kumari**
 
-## Key Functional Components
+LinkedIn: *https://www.linkedin.com/in/shreya-k-986a8321b*
 
-Component	 ---> Responsibility
-
-
-Model  ---> Loader	Initializes TensorFlow Lite interpreter and allocates tensors
-
-
-Preprocessing Pipeline	 ---> Image resizing (224×224), normalization, tensor formatting
-
-
-Inference Engine	 ---> Runs model inference and retrieves softmax probability scores
-
-
-Post‑processing	 ---> Extracts top prediction, interprets class labels, formats confidence
-
-
-UI Logic	 ---> Streamlit interface for image upload, visualization, metrics, batch progress
-
-
-Reporting Engine	 ---> Generates structured CSV outputs for single & batch modes
-
-
-## Design Principles
-
-
-Lightweight Deployment: TFLite ensures fast inference even on low‑power devices
-
-
-Separation of Concerns: Preprocessing, inference, and UI layers are logically split
-
-
-Scalable Input Modes: Supports both single‑image and multi‑image workflows
-
-
-Practical Field Utility: CSV outputs mirror real inspection reporting formats
-
-
-
-## Execution Flow
-
-Load Model → Upload Image(s) → Preprocess → Infer → Score & Classify → Display Results → Export CSV
-
-This structure aligns with modern renewable‑AI inspection systems—bridging ML inference with practical solar O&M workflows.
+*For recruiters & engineers reviewing this repo: this implementation focuses on inference & deployment workflow rather than model training — enabling easy integration into real solar asset inspection systems.*
