@@ -143,5 +143,3 @@ Access at: **[http://localhost:8501](http://localhost:8501)**
 **Shreya Kumari**
 
 LinkedIn: *https://www.linkedin.com/in/shreya-k-986a8321b*
-
-*For recruiters & engineers reviewing this repo: this implementation focuses on inference & deployment workflow rather than model training — enabling easy integration into real solar asset inspection systems.*
